@@ -693,7 +693,10 @@ function build_headers() {
 function build_gcc() {
     header "MAKING GCC"
     cd ../build-gcc || die "GCC build folder does not exist!"
-    ../gcc/configure --enable-languages=c,c++ \
+    ../gcc/configure --enable-languages=c,c++,lto \
+	             --with-isl \
+		     --enable-lto \
+		     --enable-plugin \
                      --target=${TARGET} \
                      --prefix="${INSTALL}" \
                      "${CONFIGURATION[@]}"
